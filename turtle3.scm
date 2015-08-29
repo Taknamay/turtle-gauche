@@ -1,7 +1,6 @@
 
-(import
-  (scheme base)
-  (scheme load))
+(import (scheme base)
+        (scheme load))
 
 (load "./canvas-test.scm")
 (load "./vector.scm")
@@ -45,13 +44,13 @@
 
 (define (yaw! turt theta)
   (set-orient! turt
-    (rotate (get-H turt)
-            (get-L turt)
-            theta)
-    (rotate (get-L turt)
-            (negate-vector (get-H turt))
-            theta)
-    (get-U turt)))
+               (rotate (get-H turt)
+                       (get-L turt)
+                       theta)
+               (rotate (get-L turt)
+                       (negate-vector (get-H turt))
+                       theta)
+               (get-U turt)))
 
 (define right! yaw!)
 

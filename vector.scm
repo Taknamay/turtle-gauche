@@ -13,8 +13,8 @@
 
 (define (scale-vector v k)
   (vector-map (lambda (x)
-         (* x k))
-       v))
+                (* x k))
+              v))
 
 (define (negate-vector v)
   (scale-vector v -1))

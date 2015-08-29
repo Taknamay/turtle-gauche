@@ -1,7 +1,6 @@
 
-(import
-  (scheme base)
-  (tk))
+(import (scheme base)
+        (tk))
 
 (begin
   (tk-init '())
