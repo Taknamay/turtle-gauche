@@ -4,7 +4,8 @@
           (turtle canvas)
           (turtle vector))
   (export turtle-init pen-up! pen-down! forward!
-          yaw! pitch! roll! nutate!)
+          yaw! pitch! roll! nutate! set-pos!
+          get-pos set-orient! get-orient)
   (begin
     (define-record-type type-turtle3
       (turtle pos H L U pen)
@@ -22,6 +23,11 @@
       (set-H! turt H)
       (set-L! turt L)
       (set-U! turt U))
+
+    (define (get-orient turt)
+      (list (get-H turt)
+            (get-L turt)
+            (get-U turt)))
     
     (define (pen-up! turt)
       (set-pen-state! turt #f))
