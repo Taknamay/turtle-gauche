@@ -2,7 +2,7 @@
 (define-library (turtle simple)
   (import (turtle turtle3)
           (scheme base))
-  (export forward back right left)
+  (export forward back right left up down)
   (begin
     (define t (turtle-init))
     (define (forward dist)
