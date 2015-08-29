@@ -1,5 +1,6 @@
 
-(import (scheme base))
+(import (scheme base)
+        (scheme inexact))
 
 (define (rotate vec pvec theta-degs)
   (define theta (degrees->radians theta-degs))
