@@ -2,7 +2,7 @@
 (import (scheme base)
         (scheme load))
 
-(load "./canvas-test.scm")
+(load "./canvas.scm")
 (load "./vector.scm")
 
 (define-record-type type-turtle3
