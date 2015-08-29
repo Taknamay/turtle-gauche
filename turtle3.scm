@@ -13,7 +13,7 @@
       (H get-H set-H!)
       (L get-L set-L!)
       (U get-U set-U!)
-      (pen pen-up? set-pen-state!))
+      (pen pen-down? set-pen-state!))
     
     (define (turtle-init)
       (turtle #(0 0 0) #(1 0 0) #(0 1 0) #(0 0 1) #t))
@@ -24,16 +24,16 @@
       (set-U! turt U))
     
     (define (pen-up! turt)
-      (set-pen-state! turt #t))
+      (set-pen-state! turt #f))
     
     (define (pen-down! turt)
-      (set-pen-state! turt #f))
+      (set-pen-state! turt #t))
     
     (define (forward! turt dist)
       (define start-pos (get-pos turt))
       (define new-pos (add-vectors start-pos
                                    (scale-vector (get-H turt) dist)))
-      (if (pen-up? turt)
+      (if (pen-down? turt)
           (draw-line (vector-ref start-pos 0)
                      (vector-ref start-pos 1)
                      (vector-ref new-pos 0)
