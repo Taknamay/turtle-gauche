@@ -2,7 +2,8 @@
 (define-library (turtle simple)
   (import (turtle turtle3)
           (scheme base))
-  (export forward back right left up down)
+  (export forward back right left up down
+          fd bk rt lt)
   (begin
     (define t (turtle-init))
     (define (forward dist)
@@ -16,4 +17,8 @@
     (define (up)
       (pen-up! t))
     (define (down)
-      (pen-down! t))))
+      (pen-down! t))
+    (define fd forward)
+    (define bk back)
+    (define lt left)
+    (define rt right)))
