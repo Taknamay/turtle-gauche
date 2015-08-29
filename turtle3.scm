@@ -4,7 +4,7 @@
           (turtle canvas)
           (turtle vector))
   (export turtle-init pen-up! pen-down! forward!
-          back! yaw! right! left!)
+          yaw!)
   (begin
     (define-record-type type-turtle3
       (turtle pos H L U pen)
@@ -40,9 +40,6 @@
                      (vector-ref new-pos 1)))
       (set-pos! turt new-pos))
     
-    (define (back! turt dist)
-      (forward! turt (- dist)))
-    
     (define (yaw! turt theta)
       (set-orient! turt
                    (rotate (get-H turt)
@@ -51,9 +48,4 @@
                    (rotate (get-L turt)
                            (negate-vector (get-H turt))
                            theta)
-                   (get-U turt)))
-    
-    (define right! yaw!)
-    
-    (define (left! turt theta)
-      (right! turt (- theta)))))
+                   (get-U turt)))))
