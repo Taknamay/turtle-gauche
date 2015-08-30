@@ -50,7 +50,9 @@
                        (if (negative? (- x2 x1))
                            (- (atan (/ (- y2 y1) (- x2 x1))) 3.1415)
                            (atan (/ (- y2 y1) (- x2 x1))))))
-      (redraw-turtle x1 y1 theta 24)
+      (if shown
+	(redraw-turtle x1 y1 theta 24)
+	(tk-call '.canvas 'delete 'turtle))
       (cond
        ((and pen-down shown)
         ; loop logic
