@@ -46,7 +46,7 @@
                                     (square (- y2 y1)))))))
       (define ytrav (if (= y1 y2)
                         0
-                        (/ (- y1 y2)
+                        (/ (- y2 y1)
                            (sqrt (+ (square (- x2 x1))
                                     (square (- y2 y1)))))))
       (cond
@@ -54,7 +54,8 @@
         ; loop logic
         (let loop ((curx x1)
                    (cury y1))
-          (when (< curx (* xdir x2))
+          (when (and (< curx (* xdir x2))
+                     (< cury (* ydir y2)))
             (draw-line curx cury (+ curx xtrav) (+ cury ytrav))
             (loop (+ curx xtrav) (+ cury ytrav))))
         #f)
