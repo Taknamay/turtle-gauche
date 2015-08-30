@@ -19,7 +19,9 @@
     (define (canvas-line-width width)
       (set! current-line-width width))
     (define current-line-color 'white)
-    (define valid-colors '(white black red yellow green cyan blue magenta))
+    (define valid-colors 
+      '(white black red yellow green cyan blue magenta
+        grey darkred darkgreen darkblue violet))
     (define (draw-line x1 y1 x2 y2)
       (tk-call '.canvas
                'create
