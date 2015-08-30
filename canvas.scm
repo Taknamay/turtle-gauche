@@ -9,7 +9,7 @@
   (begin
     (define canvas-image-rotate #f)
 
-    (define sleep-period 0.02)
+    (define sleep-period 0.01)
 
     (define (canvas-bg-color color)
       (if (memq color valid-colors)
