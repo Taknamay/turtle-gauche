@@ -1,9 +1,11 @@
 
 (define-library (turtle simple)
   (import (turtle turtle3)
+          (scheme case-lambda)
           (scheme base))
   (export forward back right left up down
           fd bk rt lt pu pd
+          pos set-pos
           bg-color line-color line-width)
   (begin
     (define t (turtle-init))
@@ -24,4 +26,12 @@
     (define lt left)
     (define rt right)
     (define pu up)
-    (define pd down)))
+    (define pd down)
+
+    (define (pos)
+      (get-pos t))
+
+    (define set-pos
+      (case-lambda
+       ((v) (set-pos! t (vector-append v #(0))))
+       ((x y) (set-pos (vector x y)))))))
