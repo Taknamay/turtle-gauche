@@ -8,7 +8,7 @@
           yaw! pitch! roll! nutate! set-pos!
           get-pos set-orient! get-orient
           line-color bg-color line-width
-          image-rotate)
+          image-rotate show! hide! shown?)
   (begin
     (define (image-rotate theta1 theta2)
       (if canvas-image-rotate
@@ -31,16 +31,23 @@
           (error "line-width" "Not supported by the implementation")))
 
     (define-record-type type-turtle3
-      (turtle pos H L U pen)
+      (turtle pos H L U pen shown)
       turtle?
       (pos get-pos set-pos!)
       (H get-H set-H!)
       (L get-L set-L!)
       (U get-U set-U!)
-      (pen pen-down? set-pen-state!))
-    
+      (pen pen-down? set-pen-state!)
+      (shown shown? set-shown!))
+
+    (define (show! t)
+      (set-shown! t #5))
+
+    (define (hide! t)
+      (set-shown! t #f))
+
     (define (turtle-init)
-      (turtle #(0 0 0) #(1 0 0) #(0 1 0) #(0 0 1) #t))
+      (turtle #(0 0 0) #(1 0 0) #(0 1 0) #(0 0 1) #t #t))
     
     (define (set-orient! turt H L U)
       (set-H! turt H)
@@ -62,11 +69,12 @@
       (define start-pos (get-pos turt))
       (define new-pos (add-vectors start-pos
                                    (scale-vector (get-H turt) dist)))
-      (if (pen-down? turt)
-          (draw-line (vector-ref start-pos 0)
-                     (vector-ref start-pos 1)
-                     (vector-ref new-pos 0)
-                     (vector-ref new-pos 1)))
+      (draw-line (vector-ref start-pos 0)
+                 (vector-ref start-pos 1)
+                 (vector-ref new-pos 0)
+                 (vector-ref new-pos 1)
+                 (pen-down? turt)
+                 (shown? turt))
       (set-pos! turt new-pos))
     
     (define (yaw! turt theta)
