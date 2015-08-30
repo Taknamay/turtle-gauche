@@ -6,7 +6,7 @@
   (export turtle-init pen-up! pen-down! forward!
           yaw! pitch! roll! nutate! set-pos!
           get-pos set-orient! get-orient
-          line-color bg-color)
+          line-color bg-color line-width)
   (begin
     (define (line-color color)
       (if canvas-line-color
@@ -17,6 +17,11 @@
       (if canvas-bg-color
           (canvas-bg-color color)
           (error "bg-color" "Not supported by the implementation")))
+
+    (define (line-width width)
+      (if canvas-line-width
+          (canvas-line-width width)
+          (error "line-width" "Not supported by the implementation")))
 
     (define-record-type type-turtle3
       (turtle pos H L U pen)

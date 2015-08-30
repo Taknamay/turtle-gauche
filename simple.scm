@@ -4,7 +4,7 @@
           (scheme base))
   (export forward back right left up down
           fd bk rt lt pu pd
-          bg-color line-color)
+          bg-color line-color line-width)
   (begin
     (define t (turtle-init))
     (define (forward dist)
