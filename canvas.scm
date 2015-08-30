@@ -4,7 +4,7 @@
           (scheme inexact)
           (tk))
   (export draw-line canvas-line-color canvas-bg-color canvas-line-width
-          canvas-image-rotate)
+          canvas-image-rotate draw-turtle-line)
   (begin
     (define canvas-image-rotate #f)
 
@@ -32,19 +32,53 @@
       '(white black red yellow green cyan blue magenta
         grey darkred darkgreen darkblue violet))
 
-    (define (draw-line x1 y1 x2 y2 pen-down shown)
-      (if pen-down
-          (tk-call '.canvas
-                   'create
-                   'line
-                   (+ 300 x1)
-                   (+ 300 y1)
-                   (+ 300 x2)
-                   (+ 300 y2)
-                   '-fill
-                   current-line-color
-                   '-width
-                   current-line-width)))
+    (define (draw-turtle-line x1 y1 x2 y2 pen-down shown)
+      (define xdir (if (= x1 x2)
+                       1
+                       (/ (- x2 x1) (abs (- x2 x1)))))
+      (define ydir (if (= y1 y2)
+                       1
+                       (/ (- y2 y1) (abs (- y2 y1)))))
+      (define xtrav (if (= x1 x2)
+                        0
+                        (/ (- x2 x1)
+                           (sqrt (+ (square (- x2 x1))
+                                    (square (- y2 y1)))))))
+      (define ytrav (if (= y1 y2)
+                        0
+                        (/ (- y1 y2)
+                           (sqrt (+ (square (- x2 x1))
+                                    (square (- y2 y1)))))))
+      (cond
+       ((and pen-down shown)
+        ; loop logic
+        (let loop ((curx x1)
+                   (cury y1))
+          (when (< curx (* xdir x2))
+            (draw-line curx cury (+ curx xtrav) (+ cury ytrav))
+            (loop (+ curx xtrav) (+ cury ytrav))))
+        #f)
+       ((and pen-down (not shown))
+        (draw-line x1 y1 x2 y2))
+       ((and (not pen-down) shown)
+        ; loop logic
+        #f)
+       (else
+        ; Otherwise do nothing
+        #f)))
+
+    (define (draw-line x1 y1 x2 y2)
+      (tk-call '.canvas
+               'create
+               'line
+               (+ 300 x1)
+               (+ 300 y1)
+               (+ 300 x2)
+               (+ 300 y2)
+               '-fill
+               current-line-color
+               '-width
+               current-line-width))
 
     (define (redraw-turtle x y theta-deg turtle-size)
       (define theta (* theta-deg (/ 3.141592653589792 180)))

@@ -70,12 +70,12 @@
       (define start-pos (get-pos turt))
       (define new-pos (add-vectors start-pos
                                    (scale-vector (get-H turt) dist)))
-      (draw-line (vector-ref start-pos 0)
-                 (vector-ref start-pos 1)
-                 (vector-ref new-pos 0)
-                 (vector-ref new-pos 1)
-                 (pen-down? turt)
-                 (shown? turt))
+      (draw-turtle-line (vector-ref start-pos 0)
+                        (vector-ref start-pos 1)
+                        (vector-ref new-pos 0)
+                        (vector-ref new-pos 1)
+                        (pen-down? turt)
+                        (shown? turt))
       (set-pos! turt new-pos))
     
     (define (yaw! turt theta)
