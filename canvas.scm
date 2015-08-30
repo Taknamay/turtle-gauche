@@ -45,7 +45,8 @@
                '-width
                current-line-width))
 
-    (define (redraw-turtle x y theta)
+    (define (redraw-turtle x y theta-deg turtle-size)
+      (define theta (* theta-deg (/ 3.141592653589792 180)))
       (define (draw-circle x y size)
         (tk-call '.canvas
                  'create
@@ -57,14 +58,27 @@
                  '-fill
                  current-line-color))
       ; Create the body
-      (draw-circle x y 32)
+      (draw-circle x y turtle-size)
       ; Create the head
-      (draw-circle (+ x (* 24 (cos theta)))
-                   (+ y (* 24 (sin theta)))
-                   16))
+      (draw-circle (+ x (* 0.75 turtle-size (cos theta)))
+                   (+ y (* 0.75 turtle-size (sin theta)))
+                   (/ turtle-size 2))
+      ; Create the front legs
+      (draw-circle (+ x (* 0.625 turtle-size (cos (+ theta 0.785))))
+                   (+ y (* 0.625 turtle-size (sin (+ theta 0.785))))
+                   (/ turtle-size 4))
+      (draw-circle (+ x (* 0.625 turtle-size (cos (- theta 0.785))))
+                   (+ y (* 0.625 turtle-size (sin (- theta 0.785))))
+                   (/ turtle-size 4))
+      ; Create the rear legs
+      (draw-circle (+ x (* 0.625 turtle-size (cos (+ theta 2.356))))
+                   (+ y (* 0.625 turtle-size (sin (+ theta 2.356))))
+                   (/ turtle-size 4))
+      (draw-circle (+ x (* 0.625 turtle-size (cos (- theta 2.356))))
+                   (+ y (* 0.625 turtle-size (sin (- theta 2.356))))
+                   (/ turtle-size 4)))
 
     (tk-init '())
     (tk-wm 'title "." "turtle")
     (tk-grid (tk-canvas '.canvas '-width 600 '-height 600 '-bg 'black))
-    (redraw-turtle 300 300 0)
-))
+    (redraw-turtle 300 300 0 16)))
