@@ -77,6 +77,6 @@
                            theta)))
 
     (define (nutate! turt)
-      (pitch! turt -45.85)
-      (yaw! turt -19.43)
-      (roll! turt 28.7))))
+      (pitch! turt -47.85)
+      (yaw! turt -11.43)
+      (roll! turt 43.32))))
