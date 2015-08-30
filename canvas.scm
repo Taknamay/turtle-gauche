@@ -33,31 +33,25 @@
         grey darkred darkgreen darkblue violet))
 
     (define (draw-turtle-line x1 y1 x2 y2 pen-down shown)
-      (define xdir (if (= x1 x2)
-                       1
-                       (/ (- x2 x1) (abs (- x2 x1)))))
-      (define ydir (if (= y1 y2)
-                       1
-                       (/ (- y2 y1) (abs (- y2 y1)))))
+      (define dist (sqrt (+ (square (- x2 x1))
+                            (square (- y2 y1)))))
       (define xtrav (if (= x1 x2)
                         0
-                        (/ (- x2 x1)
-                           (sqrt (+ (square (- x2 x1))
-                                    (square (- y2 y1)))))))
+                        (/ (- x2 x1) dist 0.4)))
       (define ytrav (if (= y1 y2)
                         0
-                        (/ (- y2 y1)
-                           (sqrt (+ (square (- x2 x1))
-                                    (square (- y2 y1)))))))
+                        (/ (- y2 y1) dist 0.4)))
+      (define dtrav (sqrt (+ (square xtrav)
+                             (square ytrav))))
       (cond
        ((and pen-down shown)
         ; loop logic
-        (let loop ((curx x1)
+        (let loop ((curd 0)
+                   (curx x1)
                    (cury y1))
-          (when (and (< curx (* xdir x2))
-                     (< cury (* ydir y2)))
+          (when (< curd dist)
             (draw-line curx cury (+ curx xtrav) (+ cury ytrav))
-            (loop (+ curx xtrav) (+ cury ytrav))))
+            (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav))))
         #f)
        ((and pen-down (not shown))
         (draw-line x1 y1 x2 y2))
