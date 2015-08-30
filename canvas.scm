@@ -2,11 +2,14 @@
 (define-library (turtle canvas)
   (import (scheme base)
           (scheme inexact)
+          (gauche process)
           (tk))
   (export draw-line canvas-line-color canvas-bg-color canvas-line-width
           canvas-image-rotate draw-turtle-line)
   (begin
     (define canvas-image-rotate #f)
+
+    (define sleep-period 0.02)
 
     (define (canvas-bg-color color)
       (if (memq color valid-colors)
@@ -37,12 +40,14 @@
                             (square (- y2 y1)))))
       (define xtrav (if (= x1 x2)
                         0
-                        (/ (- x2 x1) dist 0.4)))
+                        (/ (- x2 x1) dist 0.32)))
       (define ytrav (if (= y1 y2)
                         0
-                        (/ (- y2 y1) dist 0.4)))
+                        (/ (- y2 y1) dist 0.32)))
       (define dtrav (sqrt (+ (square xtrav)
                              (square ytrav))))
+      (tk-call '.canvas 'delete 'turtle)
+      (redraw-turtle x1 y1 0 24)
       (cond
        ((and pen-down shown)
         ; loop logic
@@ -50,8 +55,8 @@
                    (curx x1)
                    (cury y1))
           (when (< curd dist)
-            (tk-call '.canvas 'delete 'turtle)
-            (redraw-turtle curx cury 0 24)
+            (run-process "sleep" sleep-period :wait #t)
+            (tk-call '.canvas 'move 'turtle xtrav ytrav)
             (draw-line curx cury (+ curx xtrav) (+ cury ytrav))
             (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav))))
         #f)
