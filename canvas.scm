@@ -83,4 +83,4 @@
 
     (tk-init '())
     (tk-wm 'title "." "turtle")
-    (tk-grid (tk-canvas '.canvas '-width 600 '-height 600 '-bg 'black)))
+    (tk-grid (tk-canvas '.canvas '-width 600 '-height 600 '-bg 'black))))
