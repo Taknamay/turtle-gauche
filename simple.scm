@@ -6,7 +6,8 @@
   (export forward back right left up down
           fd bk rt lt pu pd
           pos set-pos tilt set-tilt
-          bg-color line-color line-width)
+          bg-color line-color line-width
+          show hide)
   (begin
     (define current-tilt 0)
     (define (tilt)
@@ -17,6 +18,10 @@
       (set! current-tilt theta)
       (yaw! t (- theta)))
     (define t (turtle-init))
+    (define (show)
+      (show! t))
+    (define (hide)
+      (hide! t))
     (define (forward dist)
       (forward! t dist))
     (define (back dist)
