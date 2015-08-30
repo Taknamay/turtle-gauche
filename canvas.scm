@@ -4,7 +4,13 @@
           (tk))
   (export draw-line canvas-line-color canvas-bg-color)
   (begin
-    (define canvas-bg-color #f)
+    (define (canvas-bg-color color)
+      (if (memq color valid-colors)
+          (tk-call '.canvas
+                   'configure
+                   '-bg
+                   color)
+          (error "bg-color" "Not a valid color")))
     (define (canvas-line-color color)
       (if (memq color valid-colors)
           (set! current-line-color color)
