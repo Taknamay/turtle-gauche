@@ -5,17 +5,25 @@
           (scheme base))
   (export forward back right left up down
           fd bk rt lt pu pd
-          pos set-pos
+          pos set-pos tilt set-tilt
           bg-color line-color line-width)
   (begin
+    (define current-tilt 0)
+    (define (tilt)
+      current-tilt)
+    (define (set-tilt theta)
+      (right current-tilt)
+      (left theta))
     (define t (turtle-init))
     (define (forward dist)
       (forward! t dist))
     (define (back dist)
       (forward! t (- dist)))
     (define (right theta)
+      (set! current-tilt (- current-tilt theta))
       (yaw! t theta))
     (define (left theta)
+      (set! current-tilt (+ current-tilt theta))
       (yaw! t (- theta)))
     (define (up)
       (pen-up! t))
