@@ -50,7 +50,6 @@
                        (if (negative? (- x2 x1))
                            (- (atan (/ (- y2 y1) (- x2 x1))) 3.1415)
                            (atan (/ (- y2 y1) (- x2 x1))))))
-      (tk-call '.canvas 'delete 'turtle)
       (redraw-turtle x1 y1 theta 24)
       (cond
        ((and pen-down shown)
@@ -88,7 +87,7 @@
 
     (define (redraw-turtle x y theta-deg turtle-size)
       (define theta (* theta-deg (/ 3.141592653589792 180)))
-      (define (draw-circle x y size)
+      (define (draw-circle x y size tags)
         (tk-call '.canvas
                  'create
                  'oval
@@ -97,29 +96,36 @@
                  (+ x  300 (/ size 2.0))
                  (+ y  300 (/ size 2.0))
                  '-tags
-                 "turtle"
+                 tags
                  '-fill
                  current-line-color))
+      ; Delete any previous turtles
+      (tk-call '.canvas 'delete 'turtle)
       ; Create the body
-      (draw-circle x y turtle-size)
+      (draw-circle x y turtle-size "turtle")
       ; Create the head
       (draw-circle (+ x (* 0.75 turtle-size (cos theta)))
                    (+ y (* 0.75 turtle-size (sin theta)))
-                   (/ turtle-size 2))
+                   (/ turtle-size 2)
+                   "turtle")
       ; Create the front legs
       (draw-circle (+ x (* 0.625 turtle-size (cos (+ theta 0.785))))
                    (+ y (* 0.625 turtle-size (sin (+ theta 0.785))))
-                   (/ turtle-size 4))
+                   (/ turtle-size 4)
+                   "turtle")
       (draw-circle (+ x (* 0.625 turtle-size (cos (- theta 0.785))))
                    (+ y (* 0.625 turtle-size (sin (- theta 0.785))))
-                   (/ turtle-size 4))
+                   (/ turtle-size 4)
+                   "turtle")
       ; Create the rear legs
       (draw-circle (+ x (* 0.625 turtle-size (cos (+ theta 2.356))))
                    (+ y (* 0.625 turtle-size (sin (+ theta 2.356))))
-                   (/ turtle-size 4))
+                   (/ turtle-size 4)
+                   "turtle")
       (draw-circle (+ x (* 0.625 turtle-size (cos (- theta 2.356))))
                    (+ y (* 0.625 turtle-size (sin (- theta 2.356))))
-                   (/ turtle-size 4)))
+                   (/ turtle-size 4)
+                   "turtle"))
 
     (tk-init '())
     (tk-wm 'title "." "turtle")
