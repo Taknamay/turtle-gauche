@@ -28,5 +28,5 @@
       (subgspiro side aangle maxi listi (+ count 1))))))
 
 ;(spiro 4 60 10)
-;(gspiro 10 60 10 '(1 3 5))
+(gspiro 10 60 10 '(1 3 5))
 

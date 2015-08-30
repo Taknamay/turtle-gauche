@@ -22,5 +22,5 @@
     (polystop side aangle (+ aangle turn))))))
 
 ;(poly 100 141.914)
-;(polystop 150 144 0)
+(polystop 150 144 0)
 ;(polystop 5 5 0)
