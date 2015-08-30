@@ -41,7 +41,7 @@
       (shown shown? set-shown!))
 
     (define (show! t)
-      (set-shown! t #5))
+      (set-shown! t #t))
 
     (define (hide! t)
       (set-shown! t #f))
