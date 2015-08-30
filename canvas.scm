@@ -55,6 +55,8 @@
                  (- y (/ size 2.0))
                  (+ x (/ size 2.0))
                  (+ y (/ size 2.0))
+                 '-tags
+                 "turtle"
                  '-fill
                  current-line-color))
       ; Create the body
