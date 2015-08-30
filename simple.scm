@@ -7,7 +7,7 @@
           fd bk rt lt pu pd
           pos set-pos tilt set-tilt
           bg-color line-color line-width
-          show hide)
+          show hide draw-line)
   (begin
     (define current-tilt 0)
     (define (tilt)

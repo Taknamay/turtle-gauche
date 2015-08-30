@@ -8,7 +8,8 @@
           yaw! pitch! roll! nutate! set-pos!
           get-pos set-orient! get-orient
           line-color bg-color line-width
-          image-rotate show! hide! shown?)
+          image-rotate show! hide! shown?
+          draw-line)
   (begin
     (define (image-rotate theta1 theta2)
       (if canvas-image-rotate
