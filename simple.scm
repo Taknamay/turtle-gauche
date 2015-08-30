@@ -7,7 +7,7 @@
           fd bk rt lt pu pd
           pos set-pos tilt set-tilt
           bg-color line-color line-width
-          show hide draw-line)
+          show hide draw-line home reset-tilt)
   (begin
     (define current-tilt 0)
     (define (tilt)
@@ -19,6 +19,10 @@
       (yaw! t (- theta)))
     (define t (turtle-init))
     (show! t)
+    (define (home)
+      (set-pos 0 0))
+    (define (reset-tilt)
+      (set-tilt 0))
     (define (show)
       (show! t))
     (define (hide)
