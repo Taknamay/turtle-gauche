@@ -12,7 +12,7 @@
     (define (tilt)
       current-tilt)
     (define (set-tilt theta)
-      (image-rotate (- current-tilt theta))
+      (image-rotate current-tilt (- current-tilt theta))
       (yaw! t current-tilt)
       (set! current-tilt theta)
       (yaw! t (- theta)))
