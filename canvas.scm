@@ -54,22 +54,18 @@
 	(redraw-turtle x1 y1 theta 24)
 	(tk-call '.canvas 'delete 'turtle))
       (cond
-       ((and pen-down shown)
-        ; loop logic
+       (shown
         (let loop ((curd 0)
                    (curx x1)
                    (cury y1))
           (when (< curd dist)
             (run-process "sleep" sleep-period :wait #t)
             (tk-call '.canvas 'move 'turtle xtrav ytrav)
-            (draw-line curx cury (+ curx xtrav) (+ cury ytrav))
-            (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav))))
-        #f)
-       ((and pen-down (not shown))
+            (if pen-down
+                (draw-line curx cury (+ curx xtrav) (+ cury ytrav)))
+            (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav)))))
+       (pen-down
         (draw-line x1 y1 x2 y2))
-       ((and (not pen-down) shown)
-        ; loop logic
-        #f)
        (else
         ; Otherwise do nothing
         #f)))
