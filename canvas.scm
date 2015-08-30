@@ -46,8 +46,11 @@
                         (/ (- y2 y1) dist 0.32)))
       (define dtrav (sqrt (+ (square xtrav)
                              (square ytrav))))
+      (define theta (* (atan (/ (- y2 y1)
+                                (- x2 x1)))
+                       (/ 180 3.1415926)))
       (tk-call '.canvas 'delete 'turtle)
-      (redraw-turtle x1 y1 0 24)
+      (redraw-turtle x1 y1 theta 24)
       (cond
        ((and pen-down shown)
         ; loop logic
