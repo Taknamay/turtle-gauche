@@ -32,18 +32,19 @@
       '(white black red yellow green cyan blue magenta
         grey darkred darkgreen darkblue violet))
 
-    (define (draw-line x1 y1 x2 y2)
-      (tk-call '.canvas
-               'create
-               'line
-               (+ 300 x1)
-               (+ 300 y1)
-               (+ 300 x2)
-               (+ 300 y2)
-               '-fill
-               current-line-color
-               '-width
-               current-line-width))
+    (define (draw-line x1 y1 x2 y2 pen-down shown)
+      (if pen-down
+          (tk-call '.canvas
+                   'create
+                   'line
+                   (+ 300 x1)
+                   (+ 300 y1)
+                   (+ 300 x2)
+                   (+ 300 y2)
+                   '-fill
+                   current-line-color
+                   '-width
+                   current-line-width)))
 
     (define (redraw-turtle x y theta-deg turtle-size)
       (define theta (* theta-deg (/ 3.141592653589792 180)))
