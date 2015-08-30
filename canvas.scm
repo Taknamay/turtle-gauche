@@ -2,8 +2,10 @@
 (define-library (turtle canvas)
   (import (scheme base)
           (tk))
-  (export draw-line canvas-line-color canvas-bg-color canvas-line-width)
+  (export draw-line canvas-line-color canvas-bg-color canvas-line-width
+          canvas-image-rotate)
   (begin
+    (define canvas-image-rotate #f)
     (define (canvas-bg-color color)
       (if (memq color valid-colors)
           (tk-call '.canvas

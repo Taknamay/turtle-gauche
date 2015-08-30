@@ -1,13 +1,20 @@
 (define-library (turtle turtle3)
   (import (scheme base)
           (scheme load)
+          (scheme inexact)
           (turtle canvas)
           (turtle vector))
   (export turtle-init pen-up! pen-down! forward!
           yaw! pitch! roll! nutate! set-pos!
           get-pos set-orient! get-orient
-          line-color bg-color line-width)
+          line-color bg-color line-width
+          image-rotate)
   (begin
+    (define (image-rotate theta1 theta2)
+      (if canvas-image-rotate
+          (canvas-image-rotate theta1 theta2)
+          #f))
+
     (define (line-color color)
       (if canvas-line-color
           (canvas-line-color color)
