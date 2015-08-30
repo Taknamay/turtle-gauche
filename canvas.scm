@@ -46,9 +46,10 @@
                         (/ (- y2 y1) dist 0.32)))
       (define dtrav (sqrt (+ (square xtrav)
                              (square ytrav))))
-      (define theta (* (atan (/ (- y2 y1)
-                                (- x2 x1)))
-                       (/ 180 3.1415926)))
+      (define theta (* (/ 180 3.1415926)
+                       (if (negative? (- x2 x1))
+                           (- (atan (/ (- y2 y1) (- x2 x1))) 3.1415)
+                           (atan (/ (- y2 y1) (- x2 x1))))))
       (tk-call '.canvas 'delete 'turtle)
       (redraw-turtle x1 y1 theta 24)
       (cond
@@ -123,3 +124,4 @@
     (tk-init '())
     (tk-wm 'title "." "turtle")
     (tk-grid (tk-canvas '.canvas '-width 600 '-height 600 '-bg 'black))))
+
