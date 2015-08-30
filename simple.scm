@@ -18,6 +18,7 @@
       (set! current-tilt theta)
       (yaw! t (- theta)))
     (define t (turtle-init))
+    (show! t)
     (define (show)
       (show! t))
     (define (hide)
