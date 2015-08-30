@@ -50,6 +50,8 @@
                    (curx x1)
                    (cury y1))
           (when (< curd dist)
+            (tk-call '.canvas 'delete 'turtle)
+            (redraw-turtle curx cury 0 24)
             (draw-line curx cury (+ curx xtrav) (+ cury ytrav))
             (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav))))
         #f)
@@ -81,10 +83,10 @@
         (tk-call '.canvas
                  'create
                  'oval
-                 (- x (/ size 2.0))
-                 (- y (/ size 2.0))
-                 (+ x (/ size 2.0))
-                 (+ y (/ size 2.0))
+                 (- x -300 (/ size 2.0))
+                 (- y -300 (/ size 2.0))
+                 (+ x  300 (/ size 2.0))
+                 (+ y  300 (/ size 2.0))
                  '-tags
                  "turtle"
                  '-fill
