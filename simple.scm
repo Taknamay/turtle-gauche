@@ -3,7 +3,8 @@
   (import (turtle turtle3)
           (scheme base))
   (export forward back right left up down
-          fd bk rt lt bg-color line-color)
+          fd bk rt lt pu pd
+          bg-color line-color)
   (begin
     (define t (turtle-init))
     (define (forward dist)
@@ -21,4 +22,6 @@
     (define fd forward)
     (define bk back)
     (define lt left)
-    (define rt right)))
+    (define rt right)
+    (define pu up)
+    (define pd down)))
