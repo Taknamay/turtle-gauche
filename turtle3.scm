@@ -48,7 +48,7 @@
       (set-shown! t #f))
 
     (define (turtle-init)
-      (turtle #(0.0 0.0 0.0) #(1.0 0.0 0.0) #(0.0 1.0 0.0) #(0.0 0.0 1.0) #t #t))
+      (turtle #(0.0 0.0 0.0) #(1.0 0.0 0.0) #(0.0 1.0 0.0) #(0.0 0.0 1.0) #t #f))
     
     (define (set-orient! turt H L U)
       (set-H! turt H)
