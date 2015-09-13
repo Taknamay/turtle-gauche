@@ -50,25 +50,25 @@
                        (if (negative? (- x2 x1))
                            (- (atan (/ (- y2 y1) (- x2 x1))) 3.1415)
                            (atan (/ (- y2 y1) (- x2 x1))))))
-      (if shown
-	(redraw-turtle x1 y1 theta 24)
-	(tk-call '.canvas 'delete 'turtle))
-      (cond
-       (shown
-        (let loop ((curd 0)
-                   (curx x1)
-                   (cury y1))
-          (when (< curd dist)
-            (run-process "sleep" sleep-period :wait #t)
-            (tk-call '.canvas 'move 'turtle xtrav ytrav)
-            (if pen-down
-                (draw-line curx cury (+ curx xtrav) (+ cury ytrav)))
-            (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav)))))
-       (pen-down
-        (draw-line x1 y1 x2 y2))
-       (else
-        ; Otherwise do nothing
-        #f)))
+      (when (> dist 1e-10)
+        (if shown
+            (redraw-turtle x1 y1 theta 24)
+            (tk-call '.canvas 'delete 'turtle))
+        (cond
+         (shown
+          (let loop ((curd 0)
+                     (curx x1)
+                     (cury y1))
+            (when (< curd dist)
+              (run-process "sleep" sleep-period :wait #t)
+              (tk-call '.canvas 'move 'turtle xtrav ytrav)
+              (if pen-down
+                  (draw-line curx cury (+ curx xtrav) (+ cury ytrav)))
+              (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav)))))
+         (pen-down
+          (draw-line x1 y1 x2 y2))
+         (else ; Otherwise do nothing
+          #f))))
 
     (define (draw-line x1 y1 x2 y2)
       (tk-call '.canvas
