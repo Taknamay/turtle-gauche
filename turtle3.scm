@@ -9,7 +9,7 @@
           get-pos set-orient! get-orient
           line-color bg-color line-width
           image-rotate show! hide! shown?
-          draw-line repeat)
+          draw-line repeat pen-down?)
   (begin
     (define-syntax repeat
       (syntax-rules (forever)

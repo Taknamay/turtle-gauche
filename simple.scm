@@ -8,7 +8,7 @@
           pos set-pos tilt set-tilt
           bg-color line-color line-width
           show hide draw-line home reset-tilt
-          repeat xcor ycor)
+          repeat xcor ycor setx sety)
   (begin
     (define current-tilt 0)
     (define (tilt)
@@ -50,17 +50,30 @@
     (define rt right)
     (define pu up)
     (define pd down)
-
     (define (pos)
       (get-pos t))
-
+    (define (down?)
+      (pen-down? t))
     (define set-pos
       (case-lambda
-       ((v) (set-pos! t (vector-append v #(0))))
+       ((v)
+        (let ((x1 (xcor))
+              (y1 (ycor))
+              (x2 (vector-ref v 0))
+              (y2 (vector-ref v 1)))
+          (set-pos! t (vector-append v #(0)))
+          (if (down?)
+              (draw-line x1 y1 x2 y2))))
        ((x y) (set-pos (vector x y)))))
-
     (define (xcor)
       (vector-ref (pos) 0))
-
     (define (ycor)
-      (vector-ref (pos) 1))))
+      (vector-ref (pos) 1))
+    (define (setx xval)
+      (set-pos (vector (+ xval (xcor))
+                       (ycor))))
+    (define (sety yval)
+      (set-pos (vector (xcor)
+                       (+ yval (ycor)))))))
+
+    
