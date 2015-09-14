@@ -75,9 +75,9 @@
                'create
                'line
                (+ 300 x1)
-               (+ 300 y1)
+               (- 300 y1)
                (+ 300 x2)
-               (+ 300 y2)
+               (- 300 y2)
                '-fill
                current-line-color
                '-width
