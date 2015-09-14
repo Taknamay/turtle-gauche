@@ -83,7 +83,8 @@
                '-width
                current-line-width))
 
-    (define (redraw-turtle x y theta-deg turtle-size)
+    (define (redraw-turtle x y-neg theta-deg turtle-size)
+      (define y (- y-neg))
       (define theta (* theta-deg (/ 3.141592653589792 180)))
       (define (draw-circle x y size tags)
         (tk-call '.canvas
