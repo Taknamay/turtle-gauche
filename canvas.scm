@@ -61,7 +61,7 @@
                      (cury y1))
             (when (< curd dist)
               (run-process "sleep" sleep-period :wait #t)
-              (tk-call '.canvas 'move 'turtle xtrav ytrav)
+              (tk-call '.canvas 'move 'turtle xtrav (- ytrav))
               (if pen-down
                   (draw-line curx cury (+ curx xtrav) (+ cury ytrav)))
               (loop (+ curd dtrav) (+ curx xtrav) (+ cury ytrav)))))
