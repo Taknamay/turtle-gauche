@@ -7,7 +7,8 @@
   (export draw-line canvas-line-color canvas-bg-color canvas-line-width
           canvas-image-rotate draw-turtle-line)
   (begin
-    (define canvas-image-rotate #f)
+    (define (canvas-image-rotate x y theta1 delta-theta)
+      (redraw-turtle x y (+ theta1 delta-theta) 24))
 
     (define sleep-period 0.01)
 

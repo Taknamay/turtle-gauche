@@ -34,9 +34,9 @@
                exps ...
                (lp (+ i 1))))))))
 
-    (define (image-rotate theta1 theta2)
+    (define (image-rotate x y theta1 delta-theta)
       (if canvas-image-rotate
-          (canvas-image-rotate theta1 theta2)
+          (canvas-image-rotate x y theta1 delta-theta)
           #f))
 
     (define (line-color color)
