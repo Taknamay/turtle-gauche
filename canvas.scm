@@ -8,7 +8,11 @@
           canvas-image-rotate draw-turtle-line)
   (begin
     (define (canvas-image-rotate x y theta1 delta-theta)
-      (redraw-turtle x y (+ theta1 delta-theta) 24))
+      (define sign (if (negative? delta-theta) - +))
+      (let loop ((current-theta 0))
+        (when (< current-theta (abs delta-theta))
+          (redraw-turtle x y (sign theta1 current-theta) 24)
+          (loop (+ current-theta 2)))))
 
     (define sleep-period 0.01)
 
