@@ -91,6 +91,11 @@ define-library : turtle prometheus turtle3
                    negate-vector : self '-L
                    . theta
 
+      : nutate! self resend
+        self 'pitch! -47.855
+        self 'yaw! -11.438
+        self 'roll! 43.320
+
     ;; A procedure to generate a new turtle without exposing the parent
     define : turtle
       <turtle3> 'clone
