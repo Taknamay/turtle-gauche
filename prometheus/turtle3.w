@@ -34,12 +34,12 @@ define-library : turtle prometheus turtle3
       : down! self resend
         self '-set-pen-state! #t
 
-      : -set-orient! self resend H L U
+      : set-orient! self resend H L U
         self '-set-H! H
         self '-set-L! L
         self '-set-U! U
 
-      : get-orient self resend
+      : orient self resend
         list
           self '-H
           self '-L
@@ -63,7 +63,7 @@ define-library : turtle prometheus turtle3
         self 'set-pos! new-pos
 
       : yaw! self resend theta
-        self '-set-orient!
+        self 'set-orient!
           rotate : self '-H
                    self '-L
                    . theta
@@ -73,7 +73,7 @@ define-library : turtle prometheus turtle3
           self '-U
 
       : pitch! self resend theta
-        self '-set-orient!
+        self 'set-orient!
           rotate : self '-H
                    self '-U
                    . theta
@@ -83,7 +83,7 @@ define-library : turtle prometheus turtle3
                    . theta
 
       : roll! self resend theta
-        self '-set-orient!
+        self 'set-orient!
           self '-H
           rotate : self '-L
                    self '-U
