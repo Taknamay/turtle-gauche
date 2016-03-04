@@ -12,14 +12,14 @@ define-library : turtle prometheus
   begin
     define-object <turtle3> : *the-root-object*
 
-      pos 'set-pos! #(0.0 0.0 0.0)
+      pos set-pos! #(0.0 0.0 0.0)
       ;; H L U describe how the turtle is facing
       ;; Read the turtle geometry book for reference
-      -H '-set-H! #(1.0 0.0 0.0)
-      -L '-set-L! #(0.0 1.0 0.0)
-      -U '-set-U! #(0.0 0.0 1.0)
-      down? '-set-pen-state! #t
-      shown? '-set-shown! #f
+      -H -set-H! #(1.0 0.0 0.0)
+      -L -set-L! #(0.0 1.0 0.0)
+      -U -set-U! #(0.0 0.0 1.0)
+      down? -set-pen-state! #t
+      shown? -set-shown! #f
 
       : show! self resend
         self '-set-shown! #t
@@ -40,26 +40,26 @@ define-library : turtle prometheus
 
       : get-orient self resend
         list
-          self 'get-H
-          self 'get-L
-          self 'get-U
+          self '-H
+          self '-L
+          self '-U
 
       : forward! self resend dist
         define start-pos : self 'pos
         define new-pos
           add-vectors
-            start-pos
+            . start-pos
             scale-vector
-              turt '-H
-              dist
+              self '-H
+              . dist
         draw-turtle-line
           vector-ref start-pos 0
           vector-ref start-pos 1
           vector-ref new-pos 0
           vector-ref new-pos 1
-          turt 'down?
-          turt 'shown?
-        turt 'set-pos! new-pos
+          self 'down?
+          self 'shown?
+        self 'set-pos! new-pos
 
     ;; A procedure to generate a new turtle without exposing the parent
     define : turtle
