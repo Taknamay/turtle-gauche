@@ -73,12 +73,22 @@ define-library : turtle prometheus turtle3
 
       : pitch! self resend theta
         self '-set-orient!
-          self '-H
           rotate : self '-H
                    self '-U
                    . theta
+          self '-L
           rotate : self '-U
                    negate-vector : self '-H
+                   . theta
+
+      : roll! self resend theta
+        self '-set-orient!
+          self '-H
+          rotate : self '-L
+                   self '-U
+                   . theta
+          rotate : self '-U
+                   negate-vector : self '-L
                    . theta
 
     ;; A procedure to generate a new turtle without exposing the parent
