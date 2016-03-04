@@ -1,0 +1,51 @@
+
+(import (turtle prometheus turtle3)
+        (scheme base))
+
+(define (cube t size)
+  (repeat (4)
+    (repeat (4)
+      (t 'forward! size)
+      (t 'yaw! 90))
+    (t 'pitch! 90)
+    (t 'forward! size)
+    (t 'pitch! -90)
+    (t 'roll! -90)))
+
+(define (circle3d t radius)
+  (define circum (* radius 6.283185307))
+  (define start-orient (t 'orient))
+  (define start-pos (t 'pos))
+  (repeat (120)
+    (t 'forward! (/ circum 120))
+    (t 'pitch! -3))
+  (apply t 'set-orient! start-orient)
+  (t 'set-pos! start-pos))
+
+(define (sphere t radius)
+  (repeat (20)
+    (circle3d t radius)
+    (t 'yaw! 9)))
+
+(define (helix t size)
+  (repeat (80)
+    (t 'forward! (/ size 7))
+    (t 'yaw! 10)
+    (t 'pitch! 20)))
+
+(define (tetrahedron t size)
+  (repeat (3)
+    (repeat (3)
+      (t 'forward! size)
+      (t 'yaw! 120))
+    (t 'yaw! 60)
+    (t 'roll! 109.47122063449069)))
+
+(define me (turtle))
+(me 'nutate!)
+
+;(cube me 100)
+(sphere me 100)
+;(helix me 100)
+;(tetrahedron me 140)
+
