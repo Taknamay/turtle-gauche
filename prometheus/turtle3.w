@@ -1,4 +1,4 @@
-define-library : turtle prometheus
+define-library : turtle prometheus turtle3
 ;; This is (turtle turtle3) rewritten for Wisp and Prometheus,
 ;; as an exercise in both.
   import
