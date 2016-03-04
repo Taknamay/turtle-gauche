@@ -8,7 +8,7 @@ define-library : turtle prometheus turtle3
     turtle canvas
     turtle vector
     prometheus user
-  export turtle
+  export turtle repeat
   begin
     define-object <turtle3> : *the-root-object*
 
