@@ -7,6 +7,7 @@ define-library : turtle prometheus turtle3
     scheme inexact
     turtle canvas
     turtle vector
+    turtle syntax
     prometheus user
   export turtle repeat
   begin
