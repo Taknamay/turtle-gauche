@@ -8,7 +8,8 @@
           pos set-pos tilt set-tilt
           bg-color line-color line-width
           show hide draw-line home reset-tilt
-          repeat xcor ycor setx sety)
+          repeat xcor ycor setx sety
+          clearscreen)
   (begin
     (define current-tilt 0)
     (define (tilt)

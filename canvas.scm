@@ -5,7 +5,7 @@
           (gauche process)
           (tk))
   (export draw-line canvas-line-color canvas-bg-color canvas-line-width
-          canvas-image-rotate draw-turtle-line)
+          canvas-image-rotate draw-turtle-line clearscreen)
   (begin
     (define (canvas-image-rotate x y theta1 delta-theta)
       (define sign (if (negative? delta-theta) - +))
@@ -25,6 +25,9 @@
                    '-bg
                    color)
           (error "bg-color" "Not a valid color")))
+
+    (define (clearscreen)
+      (tk-call '.canvas 'delete "all"))
 
     (define (canvas-line-color color)
       (if (memq color valid-colors)

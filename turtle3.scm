@@ -10,7 +10,8 @@
           get-pos set-orient! get-orient
           line-color bg-color line-width
           image-rotate show! hide! shown?
-          draw-line repeat pen-down?)
+          draw-line repeat pen-down?
+          clearscreen)
   (begin
     (define (image-rotate x y theta1 delta-theta)
       (if canvas-image-rotate
