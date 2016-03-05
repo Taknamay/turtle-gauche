@@ -12,8 +12,8 @@
       (let loop ((current-theta 0))
         (when (< current-theta (abs delta-theta))
           (redraw-turtle x y (sign theta1 current-theta) 24)
-          (run-process "sleep" (* sleep-period 2) :wait #t)
-          (loop (+ current-theta 7))))
+          (run-process "sleep" (* sleep-period 3) :wait #t)
+          (loop (+ current-theta 14))))
       (redraw-turtle x y (+ theta1 delta-theta) 24))
 
     (define sleep-period 0.01)
