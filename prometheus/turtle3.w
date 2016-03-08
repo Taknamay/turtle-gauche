@@ -97,6 +97,35 @@ define-library : turtle prometheus turtle3
         self 'yaw! -11.438
         self 'roll! 43.320
 
+      ;; These are aliases that are equivalent to (turtle simple)
+      ;; therefore removing the need for a separate simple library
+      : left! self resend theta
+        self 'yaw! theta
+
+      : right! self resend theta
+        self 'yaw! (- theta)
+
+      : back! self resend dist
+        self 'forward! (- dist)
+
+      : fd! self resend dist
+        self 'forward! dist
+
+      : bk! self resend dist
+        self 'back! dist
+
+      : lt! self resend theta
+        self 'left! theta
+
+      : rt! self resend theta
+        self 'right! theta
+
+      : pu! self resend
+        self 'up!
+
+      : pd! self resend
+        self 'down!
+
     ;; A procedure to generate a new turtle without exposing the parent
     define : turtle
       <turtle3> 'clone
